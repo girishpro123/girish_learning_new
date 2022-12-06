@@ -1,0 +1,19 @@
+stages:
+  - dependencies
+  - test
+  - build
+  - publish
+
+install_dependencies:
+  image: node:14-alpine
+  stage: dependencies
+  script:
+    - npm install
+  only:
+    - master
+  cache:
+    key:
+      files:
+        - package-lock.json
+    paths:
+      - node_modules
